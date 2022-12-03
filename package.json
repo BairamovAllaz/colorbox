@@ -1,0 +1,12 @@
+{
+  "name": "colorbox",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "tsc --watch"
+  },
+  "author": "",
+  "license": "ISC"
+}
