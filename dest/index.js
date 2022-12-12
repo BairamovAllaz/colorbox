@@ -58,16 +58,21 @@ function initColors(cell, addedColors, currIndex) {
     }
     else {
         while (!isDone) {
-            var randomIndex = Math.floor(Math.random() * ((colors.length - 1) - 0 + 1) + 0);
-            console.log(randomIndex);
-            var randomItem = colors[randomIndex];
-            if (!addedColors.some(s => s.colorName == randomItem.colorName)) {
+            var randomItem = getRandomColorItem();
+            if (isColorExsistInBox(addedColors)) {
                 addedColors.push(randomItem);
                 isDone = true;
-                console.log("color: " + randomItem.colorCode);
                 cell.style.backgroundColor = `${randomItem.colorCode}`;
             }
         }
+    }
+    function isColorExsistInBox(addedColors) {
+        return !addedColors.some(s => s.colorName == randomItem.colorName);
+    }
+    function getRandomColorItem() {
+        var randomIndex = Math.floor(Math.random() * ((colors.length - 1) - 0 + 1) + 0);
+        var randomItem = colors[randomIndex];
+        return randomItem;
     }
 }
 if (typeof window !== 'undefined') {

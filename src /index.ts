@@ -2,8 +2,6 @@ var BOX_COUNT: number = 3;
 var COLOR_BOX_COUNT: number = 5;
 var COLOR_CELL_COUNT: number = 3;
 
-
-
 interface color {
     colorCode: string,
     colorName: string
@@ -51,7 +49,7 @@ function createCell(element: HTMLDivElement): void {
     var addedColors: color[] = [];
     for (let i = 0; i < COLOR_BOX_COUNT; i++) {
         var cell = initCell(i);
-        initColors(cell,addedColors,i);
+        initColors(cell, addedColors, i);
         element.appendChild(cell);
     }
 }
@@ -68,23 +66,31 @@ function initCell(id: number): HTMLDivElement {
 }
 
 
-function initColors(cell: HTMLDivElement, addedColors: color[],currIndex: number): void {
+function initColors(cell: HTMLDivElement, addedColors: color[], currIndex: number): void {
     var isDone: boolean = false;
 
     if (currIndex < COLOR_CELL_COUNT - 1) {
         cell.style.backgroundColor = "white";
     } else {
         while (!isDone) {
-            var randomIndex = Math.floor(Math.random() * ((colors.length - 1) - 0 + 1) + 0);
-            console.log(randomIndex);
-            var randomItem: color = colors[randomIndex];
-            if (!addedColors.some(s => s.colorName == randomItem.colorName)) {
+            var randomItem: color = getRandomColorItem();
+            if (isColorExsistInBox(addedColors)){
                 addedColors.push(randomItem);
                 isDone = true;
-                console.log("color: " + randomItem.colorCode)
                 cell.style.backgroundColor = `${randomItem.colorCode}`;
             }
         }
+    }
+
+    function isColorExsistInBox(addedColors : color[])
+    { 
+        return !addedColors.some(s => s.colorName == randomItem.colorName)
+    }
+
+    function getRandomColorItem() {
+        var randomIndex = Math.floor(Math.random() * ((colors.length - 1) - 0 + 1) + 0);
+        var randomItem: color = colors[randomIndex];
+        return randomItem;
     }
 }
 
