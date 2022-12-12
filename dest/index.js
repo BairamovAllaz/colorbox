@@ -20,16 +20,17 @@ function initBox() {
     }
     for (var i = 0; i < BOX_COUNT; ++i) {
         var box = createBox(i);
-        createCell(box);
+        // createCell(box);
         mainBox === null || mainBox === void 0 ? void 0 : mainBox.appendChild(box);
     }
 }
 function createBox(id) {
     var div = document.createElement("div");
     div.id = id.toString();
-    // div.style.background = "red";
-    div.style.width = "200px";
+    div.style.width = "350px";
     div.style.height = "300px";
+    div.style.backgroundImage = "url('./img/bottle.jpg')";
+    div.style.backgroundSize = "400px";
     div.style.float = "left";
     div.style.marginLeft = "20px";
     return div;
